@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TEST 2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            
+            function returnResult(){
+                var s = document.getElementById("array").value;
+                var array = s.split(" ");
+                var count = 0;
+                var text = "";
+                var i;
+                var j;
+                for (i = 0; i < array.length; i++){
+                    count=0;
+                    for(j = 0; j < array.length; j++){
+                        if(array[i] > 100 || array[i] < 1){
+                            continue;
+                        }else if(array[i] === array[j]){
+                            count++;
+                        }
+                    }
+                    text += array[i] + " appears " + count + " times." + "<br>";
+                }
+                document.getElementById("result").innerHTML = text;
+            }
+            
+        </script>
+        <style>
+            .column.after{
+                padding: 10px;
+            }
+            .column{
+                float: left;
+                padding: 2px;
+            }
+            .row{
+                padding: 15px;
+            }
+            .row.after{
+                content: "";
+                padding: 15px;
+                display: table;
+                clear: both;
+            }
+            .row.after{
+                content: "";
+                padding: 15px;
+                display: table;
+                clear: both;
+            }
+        </style>
+        <div class="row">
+        <div class="column">Enter integers separated by space: </div>
+        <input class="column" type="text" id="array" >
+        <button class="column" onclick=" returnResult()"> Get Result</button>
+        </div>
+        <div class="row">
+        <p id="result"></p>
+        </div>
+    </body>
+</html>

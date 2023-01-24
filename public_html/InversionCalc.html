@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Loan Calculator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1>Loan Calculator</h1>
+    </head>
+    <body>
+        <script>
+            function computePayment(){
+                var loanAmount = document.getElementById("invAmount").value;
+                var intRate = document.getElementById("interestRate").value;
+                var numYears = document.getElementById("numYears").value;
+                var monthlyPayment = loanAmount * (intRate / 1200) / (1 - 1 / Math.pow(1 + intRate / 1200, numYears * 12));
+                
+                document.getElementById("total").innerHTML = (monthlyPayment * 12 * numYears).toFixed(2);
+            }
+            
+            function getMonthlyPayment(){
+                var loanAmount = document.getElementById("invAmount").value;
+                var intRate = document.getElementById("interestRate").value;
+                var numYears = document.getElementById("numYears").value;
+                var monthlyPayment = loanAmount * (intRate / 1200) / (1 - 1 / Math.pow(1 + intRate / 1200, numYears * 12));
+          
+                document.getElementById("monthly").innerHTML = (monthlyPayment).toFixed(2);
+            }
+        </script>
+        <style>
+            .column.after{
+                padding: 10px;
+            }
+            .column{
+                float: left;
+                padding: 2px;
+            }
+            .row{
+                padding: 15px;
+            }
+            .row.after{
+                content: "";
+                padding: 15px;
+                display: table;
+                clear: both;
+            }
+            
+        </style>
+        
+        <div class="row">
+            <div class="column"> Loan Amount: </div>
+            <input style="margin-left: 55px;" class="column" type="text" id="invAmount">
+        </div>
+        <div class="row">
+            <div class="column"> Annual Interest Rate: </div>
+            <input style="margin-left: 12px;" class="column" type="text" id="interestRate">
+        </div>
+        <div class="row">
+            <div class="column"> Number of Years: </div>
+            <input style="margin-left: 35px;" class="column" type="text" id="numYears">
+        </div>
+        
+        <div class="row">
+            <div class="column"> Monthly Payment:</div>
+            <div style="margin-left: 30px;" class="column" id="monthly"></div>
+        </div>
+        <div class="row">
+            <div class="column"> Total Payment:</div>
+            <div style="margin-left: 52px;" class="column" id="total"></div>
+        </div>
+        
+        <div class="row">  
+        <button class="column" onclick="window.location.reload()"> Reset </button>
+        <button style="margin-left: 120px;" class="column" onclick="getMonthlyPayment();computePayment()"> Compute Payment</button>
+        </div>
+    </body>
+</html>

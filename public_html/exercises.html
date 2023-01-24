@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title> Circle </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1>Resize Circle</h1>
+    </head>
+    
+    <body>
+        <div> //I couldn't find anything on adding an event listener on keypressed that
+            can be pressed without putting the cursor in an input box. 
+        </div>
+        <div> //So, you must click into the input box, then press up and down keys to enlarge 
+            and reduce the circle.
+        </div>
+        <div>
+            <canvas id="myCanvas" width="400" height="400" style="border:1px solid #d3d3d3;">
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var radius = 50;
+            ctx.beginPath();
+            ctx.arc(c.width/2, c.height/2, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = "steelblue";
+            ctx.fill();
+            ctx.stroke();
+            
+            document.addEventListener("keydown", unicode, false);
+            
+            function Enlarge(){
+                radius = radius + 10;
+                ctx.beginPath();
+                ctx.arc(c.width/2, c.height/2, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = "steelblue";
+                ctx.fill();
+                ctx.stroke();
+            }
+            
+            function Reduce(){
+                radius = radius - 10;
+                
+                ctx.clearRect(0, 0, 400, 400);
+                ctx.beginPath();
+                ctx.arc(400/2, 400/2, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = "steelblue";
+                ctx.fill();
+                ctx.stroke();
+            }
+            function unicode(event){
+                var x = event.keyCode;
+                if(x == 40){if(radius == 10){
+                        radius = radius + 40;
+                    } else{
+                    radius = radius - 10;
+                    }
+                
+                ctx.clearRect(0, 0, c.width, c.height);
+                ctx.beginPath();
+                ctx.arc(c.width/2, c.height/2, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = "steelblue";
+                ctx.fill();
+                ctx.stroke();
+                }
+                if(x == 38){
+                    if(radius == 190){
+                        radius = radius - 140;
+                    } else{
+                    radius = radius + 10;
+                    }
+                ctx.clearRect(0, 0, 400, 400);
+                ctx.beginPath();
+                ctx.arc(400/2, 400/2, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = "steelblue";
+                ctx.fill();
+                ctx.stroke();ctx.clearRect(0, 0, c.width, c.height);
+                ctx.beginPath();
+                ctx.arc(c.width/2, c.height/2, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = "steelblue";
+                ctx.fill();
+                ctx.stroke();
+                }
+            }
+            
+        </script>
+        </div>
+        <style>
+            .btn{
+                border: 2px solid black;
+                background-color: white;
+                color: black;
+                padding: 14px 28px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .enlarge {
+                border-color: #4CAF50;
+                color: green;
+            }
+            .enlarge:hover{
+                background-color: #4CAF50;
+                color: white;
+            }
+            .reduce {
+                border-color: #f44336;
+                color: red;
+            }
+            .reduce:hover {
+                background-color: #f44336;
+                color: white
+            }
+        </style>
+        <button onclick="Enlarge()" class="btn enlarge" >Enlarge</button>
+        <button onclick="Reduce()" class="btn reduce">Reduce</button>
+    </body>
+</html>
